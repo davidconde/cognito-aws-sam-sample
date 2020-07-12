@@ -7,6 +7,8 @@ Description: >
 Globals:
   Function:
     Timeout: 3
+    Layers:
+      - !Ref BaseLayer
 
 Resources:
   RegisterCreateAccountFunction:
@@ -21,7 +23,22 @@ Resources:
           Properties:
             Path: /account
             Method: put
-  
+
+  ## =====================================
+  ##          Layers
+  ## =====================================
+
+  BaseLayer:
+    Type: AWS::Serverless::LayerVersion
+    Properties:
+      LayerName: base-layer
+      Description: Dependencies for Cognito
+      ContentUri: src/layers/base/
+      CompatibleRuntimes:
+        - nodejs12.x
+      LicenseInfo: "MIT"
+      RetentionPolicy: Retain
+
   ## =====================================
   ##          Cognito
   ## =====================================
