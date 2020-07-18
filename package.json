@@ -1,0 +1,25 @@
+{
+  "name": "cognito-sample",
+  "version": "1.0.0",
+  "description": "cognito sample package using aws sam",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/davidconde/cognito-aws-sam-sample.git"
+  },
+  "keywords": [
+    "serverless"
+  ],
+  "author": "David Conde Marin <david.conde.marin@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/davidconde/cognito-aws-sam-sample/issues"
+  },
+  "homepage": "https://github.com/davidconde/cognito-aws-sam-sample#readme",
+  "devDependencies": {
+    "jest": "^26.1.0"
+  }
+}
