@@ -187,5 +187,9 @@ module.exports = {
   // watchman: true,
   "modulePaths": [
     "<rootDir>/src/layers/base/nodejs/node_modules/"
-  ]
+  ],
+
+  "moduleNameMapper": {
+    "\/opt\/nodejs\/logger.js": "<rootDir>/src/layers/base/nodejs/logger.js"
+  }
 };

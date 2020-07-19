@@ -1,11 +1,21 @@
 const winston = require("winston");
 
 const setupLogging = (context) => {
+
+  const appLogLevel = process.env.APP_LOG_LEVEL || "error";
+  let functionName = "UNKNOWN";
+  let functionVersion = "$LATEST";
+
+  if (context) {
+    functionName = context.functionName;
+    functionVersion = context.functionVersion;
+  }
+
   const logger = winston.createLogger({
-    level: process.env.APP_LOG_LEVEL,
+    level: appLogLevel,
     defaultMeta: {
-      functionName: context.functionName,
-      functionVersion: context.functionVersion
+      functionName: functionName,
+      functionVersion: functionVersion
     },
     transports: [
       new winston.transports.Console()
