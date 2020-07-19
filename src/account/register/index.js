@@ -16,7 +16,7 @@ exports.lambdaHandler = async (event, context) => {
   const body = BodyParser(event);
   
   // poor man's validation
-  if (body === null || isValidRequest(body))
+  if (body === null || !isValidRequest(body))
     return ResponseUtil.Error(400);
   
   try {
