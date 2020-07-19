@@ -3,6 +3,7 @@
 
 ### AWS Sam ###
 samconfig.toml
+environment.dev.json
 
 ### Linux ###
 *~
