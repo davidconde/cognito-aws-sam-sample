@@ -10,7 +10,8 @@ Globals:
     Layers:
       - !Ref BaseLayer
     Environment:
-      APP_REGION: "eu-west-1"
+      Variables:
+        APP_REGION: "eu-west-1"
 
 Resources:
   RegisterCreateAccountFunction:
@@ -20,7 +21,8 @@ Resources:
       Handler: index.lambdaHandler
       Runtime: nodejs12.x
       Environment:
-        APP_USERPOOL_CLIENT_ID: !Ref CognitoUserPoolClient
+        Variables:
+          APP_USERPOOL_CLIENT_ID: !Ref CognitoUserPoolClient
       Events:
         HelloWorld:
           Type: Api
