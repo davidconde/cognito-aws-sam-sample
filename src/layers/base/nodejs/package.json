@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "aws-sdk": "^2.713.0",
-    "dcm-lambda-utils": "^1.0.3"
+    "dcm-lambda-utils": "^1.0.3",
+    "winston": "^3.3.3"
   }
 }
