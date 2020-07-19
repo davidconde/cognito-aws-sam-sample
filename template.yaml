@@ -9,6 +9,8 @@ Globals:
     Timeout: 3
     Layers:
       - !Ref BaseLayer
+    Environment:
+      APP_REGION: "eu-west-1"
 
 Resources:
   RegisterCreateAccountFunction:
@@ -17,6 +19,8 @@ Resources:
       CodeUri: src/account/register
       Handler: index.lambdaHandler
       Runtime: nodejs12.x
+      Environment:
+        APP_USERPOOL_CLIENT_ID: !Ref CognitoUserPoolClient
       Events:
         HelloWorld:
           Type: Api
