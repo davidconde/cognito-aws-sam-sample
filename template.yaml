@@ -12,6 +12,7 @@ Globals:
     Environment:
       Variables:
         APP_REGION: "eu-west-1"
+        APP_LOG_LEVEL: "info"
 
 Resources:
   RegisterCreateAccountFunction:
@@ -24,7 +25,7 @@ Resources:
         Variables:
           APP_USERPOOL_CLIENT_ID: !Ref CognitoUserPoolClient
       Events:
-        HelloWorld:
+        RegisterAccount:
           Type: Api
           Properties:
             Path: /account
