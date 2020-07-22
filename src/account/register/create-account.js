@@ -27,9 +27,6 @@ const saveUser = async (requestBody) => {
   }catch (error) {
     logger.error(error);
   }
-  
-
-
 }
 
 module.exports = saveUser;
