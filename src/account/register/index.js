@@ -25,7 +25,7 @@ exports.lambdaHandler = async (event, context) => {
   try {
     logger.info("saving user information");
 
-    const result = await saveUser(body);
+    const result = await saveUser(body, logger);
     return ResponseUtil.OK(result);
   } 
   catch (error) 
