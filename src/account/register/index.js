@@ -28,12 +28,8 @@ exports.lambdaHandler = async (event, context) => {
     const result = await saveUser(body);
     return ResponseUtil.OK(result);
   } 
-  catch (error) 
-  {
+  catch (error) {
     logger.error(error)
     return ResponseUtil.Error(500, "There was an error saving the user");
   }
-
-
-  
 }
