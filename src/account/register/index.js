@@ -1,4 +1,6 @@
 const { ResponseUtil, BodyParser } = require('dcm-lambda-utils');
+const setupLogger  = require("/opt/nodejs/logger.js");
+
 const saveUser = require("./create-account");
 
 const isValidRequest = (requestBody) => {
@@ -9,6 +11,7 @@ const isValidRequest = (requestBody) => {
 }
 
 exports.lambdaHandler = async (event, context) => {
+  const logger = setupLogger(context);
   
   if (!event || !event.body)
     return ResponseUtil.Error(400);
@@ -20,11 +23,14 @@ exports.lambdaHandler = async (event, context) => {
     return ResponseUtil.Error(400);
   
   try {
-    const result = saveUser(body);
+    logger.info("saving user information");
+
+    const result = await saveUser(body);
     return ResponseUtil.OK(result);
   } 
   catch (error) 
   {
+    logger.error(error)
     return ResponseUtil.Error(500, "There was an error saving the user");
   }
 
