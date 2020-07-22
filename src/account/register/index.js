@@ -1,5 +1,5 @@
 const { ResponseUtil, BodyParser } = require('dcm-lambda-utils');
-const setupLogger  = require("/opt/nodejs/logger.js");
+const {setupLogger}  = require("/opt/nodejs/logger.js");
 
 const saveUser = require("./create-account");
 
@@ -25,7 +25,7 @@ exports.lambdaHandler = async (event, context) => {
   try {
     logger.info("saving user information");
 
-    const result = await saveUser(body, logger);
+    const result = await saveUser(body);
     return ResponseUtil.OK(result);
   } 
   catch (error) 

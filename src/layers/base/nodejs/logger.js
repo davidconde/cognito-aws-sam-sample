@@ -1,7 +1,8 @@
 const winston = require("winston");
 
-const setupLogging = (context) => {
+let logger = null;
 
+const setupLogger = (context) => {
   const appLogLevel = process.env.APP_LOG_LEVEL || "error";
   let functionName = "UNKNOWN";
   let functionVersion = "$LATEST";
@@ -11,7 +12,7 @@ const setupLogging = (context) => {
     functionVersion = context.functionVersion;
   }
 
-  const logger = winston.createLogger({
+  logger = winston.createLogger({
     level: appLogLevel,
     defaultMeta: {
       functionName: functionName,
@@ -25,4 +26,11 @@ const setupLogging = (context) => {
   return logger;
 };
 
-module.exports = setupLogging;
+const getLogger = () => {
+  if (logger === null)
+    throw new Error("you must call setup first to start your logger");
+  
+  return logger;
+}
+
+module.exports = {setupLogger, getLogger};
