@@ -47,6 +47,22 @@ Resources:
             Path: /account/confirm
             Method: post
 
+  LoginFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: src/account/login
+      Handler: index.lambdaHandler
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          APP_USERPOOL_CLIENT_ID: !Ref CognitoUserPoolClient
+      Events:
+        Login:
+          Type: Api
+          Properties:
+            Path: /account/login
+            Method: post
+
   ## =====================================
   ##          Layers
   ## =====================================
