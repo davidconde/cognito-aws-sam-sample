@@ -28,6 +28,6 @@ exports.lambdaHandler = async (event, context) => {
   } 
   catch (error) {
     logger.error(error)
-    return ResponseUtil.Error(500, "There was an error saving the user");
+    return ResponseUtil.Error(500, "There was an error confirming the user");
   }
 }
