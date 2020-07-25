@@ -1,10 +1,11 @@
 const { ResponseUtil, BodyParser } = require('dcm-lambda-utils');
 const {setupLogger}  = require("/opt/nodejs/logger.js");
+const confirmAccount = require("./confirm-account");
 
 const isValidRequest = (requestBody) => {
   // insert fancy validation here
   return (
-    requestBody.email && requestBody.password
+    requestBody.email && requestBody.code
   )
 }
 
@@ -22,8 +23,8 @@ exports.lambdaHandler = async (event, context) => {
   
   try {
     logger.info("confirming user account");
-
-    return ResponseUtil.OK({});
+    const result = await confirmAccount(body);
+    return ResponseUtil.OK(result);
   } 
   catch (error) {
     logger.error(error)
