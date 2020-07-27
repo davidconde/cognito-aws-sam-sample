@@ -26,7 +26,7 @@ describe("validation tests for account confirmation", () => {
     
     const body = {
       email: "sample.email@email.com",
-      password: "aPassW0rd!",
+      code: "aPassW0rd!",
     };
 
     const response = await lambdaHandler(createBody(body), null);
