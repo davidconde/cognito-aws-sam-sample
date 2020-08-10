@@ -1,15 +1,24 @@
 const getTemplateText = require("./../template-loader");
-jest.mock("fs")
+jest.mock('fs');
 
 describe("basic tests for mapper", () => {
+  beforeAll(() => {
+    const MOCK_FILE_INFO = {
+      'existing-template': 'existing template',
+      'existing-key-template': 'existing template with a {{key}}',
+    };
+
+    require('fs').__setMockFiles(MOCK_FILE_INFO);
+  })
+
   it("returns text when no replacements are sent and no keys present", () => {
     const response = getTemplateText("existing-template");
-   // expect(response).toBe("existing template")
+    expect(response).toBe("existing template")
   });
 
   it("returns text when no replacements are sent and keys are present", () => {
     const response = getTemplateText("existing-key-template");
-  //  expect(response).toBe("existing template with a {{key}}")
+    expect(response).toBe("existing template with a {{key}}")
   });
 
   it("performs basic key replacement", () => {
@@ -18,6 +27,6 @@ describe("basic tests for mapper", () => {
     ];
     
     const response = getTemplateText("existing-key-template", replacements);
-    //expect(response).toBe("existing template with a my-replacement")
+    expect(response).toBe("existing template with a my-replacement")
   })
 })
