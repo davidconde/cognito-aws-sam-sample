@@ -62,6 +62,23 @@ Resources:
           Properties:
             Path: /account/login
             Method: post
+      
+  DemoAuthenticatedFunction:
+    Type: AWS::Serverless::Function 
+    Properties:
+      CodeUri: src/demo-auth
+      Handler: index.lambdaHandler
+      Runtime: nodejs12.x
+      Environment:
+        Variables:
+          APP_USERPOOL_CLIENT_ID: !Ref CognitoUserPoolClient
+          APP_USERPOOL_ID: !Ref CognitoUserPool
+      Events:
+        Login:
+          Type: Api
+          Properties:
+            Path: /demo
+            Method: get
 
   ## =====================================
   ##          Layers
