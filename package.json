@@ -20,7 +20,6 @@
   },
   "homepage": "https://github.com/davidconde/cognito-aws-sam-sample#readme",
   "devDependencies": {
-    "jest": "^26.1.0",
-    "mock-fs": "^4.12.0"
+    "jest": "^26.1.0"
   }
 }

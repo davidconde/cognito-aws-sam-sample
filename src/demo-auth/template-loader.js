@@ -1,6 +1,7 @@
 const getTemplateText = (template, replacements) => {
   const fs = require('fs')
-  const data = fs.readFileSync(template, 'utf8');
+  const data = fs.readFileSync(template, 'utf8') || "";
+
   return mapTemplate(data, replacements);
 }
 
@@ -14,7 +15,6 @@ const mapTemplate = (template, replacements) => {
       const key = replacements[i].key;
       const replacement = replacements[i].value;
       
-
       const pattern = new RegExp('\\{\\{' + key + '\\}\\}', 'gi');
       template = template.replace(pattern, replacement);
   }
