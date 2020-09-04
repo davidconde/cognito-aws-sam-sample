@@ -1,6 +1,7 @@
 const { ResponseUtil } = require('dcm-lambda-utils');
+
 const {getLogger}  = require("/opt/nodejs/logger.js");
-const getTemplateText = require("./template-loader");
+const getTemplateText = require("/opt/nodejs/templates/index.js");
 
 const composeResponse = (template) => {
   const response = ResponseUtil.OK({});

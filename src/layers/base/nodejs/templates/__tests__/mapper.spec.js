@@ -1,4 +1,4 @@
-const getTemplateText = require("./../template-loader");
+const getTemplateText = require("./../index");
 jest.mock('fs');
 
 describe("basic tests for mapper", () => {

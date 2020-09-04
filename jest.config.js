@@ -190,6 +190,7 @@ module.exports = {
   ],
 
   "moduleNameMapper": {
-    "\/opt\/nodejs\/logger.js": "<rootDir>/src/layers/base/nodejs/logger.js"
+    "\/opt\/nodejs\/logger.js": "<rootDir>/src/layers/base/nodejs/logger.js",
+    "\/opt\/nodejs\/templates\/index.js": "<rootDir>/src/layers/base/nodejs/templates/index.js"
   }
 };
