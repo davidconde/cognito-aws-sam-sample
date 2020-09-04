@@ -62,7 +62,22 @@ Resources:
           Properties:
             Path: /account/login
             Method: post
-      
+  
+  ## =====================================
+  ##          Comms
+  ## =====================================
+
+  FnCustomMessage:
+    Type: AWS::Serverless::Function
+    Properties:
+      CodeUri: src/account/account-email-messager/
+      Handler: index.handler
+      Runtime: nodejs10.x
+            
+  ## =====================================
+  ##          Authentication
+  ## =====================================
+  
   DemoAuthenticatedFunction:
     Type: AWS::Serverless::Function 
     Properties:
@@ -95,6 +110,18 @@ Resources:
       LicenseInfo: "MIT"
       RetentionPolicy: Retain
 
+  ### ================
+  ### Lambda permissions
+  ### ================
+
+  CognitoCustomMessageInvocationPermission:
+    Type: AWS::Lambda::Permission
+    Properties:
+      Action: lambda:InvokeFunction
+      FunctionName: !GetAtt FnCustomMessage.Arn
+      Principal: cognito-idp.amazonaws.com
+      SourceArn: !GetAtt CognitoUserPool.Arn
+
   ## =====================================
   ##          Cognito
   ## =====================================
@@ -102,6 +129,9 @@ Resources:
   CognitoUserPool:
     Type: AWS::Cognito::UserPool
     Properties:
+      
+      LambdaConfig:
+        CustomMessage: !GetAtt FnCustomMessage.Arn
       AutoVerifiedAttributes:
         - email
       Policies:
